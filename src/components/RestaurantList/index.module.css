@@ -1,0 +1,16 @@
+.rounded {
+    border-radius: 10px;
+}
+
+.circleIcon {
+    color: #124b8a;
+}
+
+.custom_textfield {
+    borderColor: #124b8a;
+}
+
+.custom_icon {
+    margin-right: -8px;
+    /* การกำหนดระยะห่างของ icon จากขอบขวาของ TextField */
+}
