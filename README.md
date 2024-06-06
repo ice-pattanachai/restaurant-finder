@@ -36,16 +36,16 @@
 
 ### Node.js
 
-If you do not have Node.js installed, you can download it from the [official website](https://nodejs.org/){:target="\_blank"}. Follow the instructions for your operating system:
+If you do not have Node.js installed, you can download it from the [official website](https://nodejs.org/) Follow the instructions for your operating system:
 
 - **Windows**
 
-  1. Download the Windows Installer from the [Node.js website](https://nodejs.org/){:target="\_blank"}.
+  1. Download the Windows Installer from the [Node.js website](https://nodejs.org/)
   2. Run the installer. Follow the prompts to install Node.js.
 
 - **macOS**
 
-  1. Download the macOS Installer from the [Node.js website](https://nodejs.org/){:target="\_blank"}.
+  1. Download the macOS Installer from the [Node.js website](https://nodejs.org/)
   2. Run the installer and follow the instructions.
 
 - **Linux**
