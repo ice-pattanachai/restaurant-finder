@@ -1,0 +1,12 @@
+.sidebar {
+    width: 60px;
+    background-color: #f5f5f5;
+    padding: 10px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.listItem {
+    /* margin-bottom: 10px; */
+}

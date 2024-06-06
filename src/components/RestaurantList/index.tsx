@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { Card, CardContent, Typography, CardMedia, Grid, TextField, MenuItem, Select, Box, InputAdornment } from '@mui/material';
 import { Restaurant } from '../../types/Restaurant';
 import SearchIcon from '@mui/icons-material/Search';
-import StarIcon from '@mui/icons-material/Star';
 import classes from './index.module.css'
 
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
@@ -45,7 +44,17 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants }) => {
             </MenuItem>
           ))}
         </Select>
-        <TextField
+
+          <TextField
+            placeholder="Search name..."
+            variant="outlined"
+            fullWidth
+            onChange={(e) => setFilter(e.target.value)}
+            className={`${classes.search_bar}`}
+            
+          />
+
+        {/* <TextField
           placeholder="Search name..."
           variant="outlined"
           fullWidth
@@ -71,8 +80,9 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants }) => {
               },
             },
           }}
-        />
+        /> */}
       </Box>
+
       <Grid container spacing={3}>
         {filteredRestaurants.map((restaurant) => (
           <Grid item xs={12} sm={6} md={4} key={restaurant.id}>
@@ -81,6 +91,7 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants }) => {
                 <Box sx={{ paddingLeft: 1, paddingRight: 1 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center' , paddingBlockEnd :2}}>
 
+                    {/* image */}
                     <CardMedia
                       component="img"
                       style={{ width: 80, height: 80, borderRadius: '10%', objectFit: 'cover', marginRight: 2 }} // ใช้ object-fit เพื่อไม่ให้บีบภาพ
@@ -90,24 +101,29 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants }) => {
 
                     <Box sx={{ flex: 1 , paddingLeft: 1, }}>
 
+                      {/* text */}
                       <Typography gutterBottom variant="h5" component="div">
                         {restaurant.name}
                       </Typography>
 
                       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 1 }}>
+
+                        {/* time */}
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
                           <CalendarMonthIcon sx={{ marginRight: 1 }} />
-                          <Typography variant="body2" color="text.secondary">
+                          <Typography variant="body1" className={` ${classes.custom_textfield_bold}`}>
                             {restaurant.operation_time[0].time_open} - {restaurant.operation_time[0].time_close}
                           </Typography>
                         </Box>
                         
+                        {/* score /5 */}
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
                           <CircleIcon sx={{  marginRight: 1 }} className={classes.circleIcon} />
-                          <Typography variant="body2" color="text.secondary">
+                          <Typography variant="body1" className={`${classes.circleIcon} , ${classes.custom_textfield_bold}`}>
                             {restaurant.rating}
                           </Typography>
                         </Box>
+
                       </Box>
                     </Box>
                   </Box>
@@ -116,7 +132,7 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants }) => {
                         <Grid item key={index} xs={4}>
                           <CardMedia
                             component="img"
-                            height="150"
+                            height="130"
                             image={image}
                             style={{
                               borderRadius: index === 0 
