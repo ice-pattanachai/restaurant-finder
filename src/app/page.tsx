@@ -1,7 +1,7 @@
 import { loadRestaurants } from '../lib/loadData';
 import RestaurantList from '../components/RestaurantList';
 import { Restaurant } from '../types/Restaurant';
-import ResponsiveAppBar from '../components/Navbar';
+import NavBar from '../components/Navbar';
 import AppSidebar from '../components/Sidebar';
 import { Box } from '@mui/material';
 
@@ -11,7 +11,7 @@ const Home = async () => {
 
   return (
     <Box>
-      <ResponsiveAppBar />
+      <NavBar />
       <Box className="container " sx={{ display: 'flex', flexDirection: 'row', minHeight: '100vh' }}>
         <AppSidebar />
         <RestaurantList restaurants={restaurants} />
