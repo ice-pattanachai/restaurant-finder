@@ -1,5 +1,7 @@
 # My Restaurant App
 
+ ![image](https://raw.githubusercontent.com/ice-pattanachai/restaurant-finder/developer/public/image/Screenshot_6-6-2024_205755_172.20.1.131.jpeg)
+
 ## Installation
 
 1. Clone the repository
