@@ -15,6 +15,7 @@ import Badge from '@mui/material/Badge';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Grid from'@mui/material/Grid'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import Button from '@mui/material/Button';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -58,14 +59,26 @@ function NavBar() {
             <span style={{ margin: '0 8px', color:'var(--t-blue1)'}}>|</span>
           </Grid>
 
-          <Tooltip title="Open settings">
+          {/* <Tooltip title="pattanachai">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               <Avatar alt="Remy Sharp" src="https://avatars.githubusercontent.com/u/150659852?v=4" />
             </IconButton>
+          </Tooltip> */}
+          <Tooltip title="GitHub pattanachai">
+            <a href="https://github.com/ice-pattanachai/"  target="_blank">
+              <IconButton sx={{ p: 0 }}>
+                <Avatar alt="Remy Sharp" src="https://avatars.githubusercontent.com/u/150659852?v=4" />
+              </IconButton>
+            </a>
           </Tooltip>
 
           <Typography variant="subtitle1" sx={{ color: 'var(--t-w)', ml: 2 }}>Account</Typography>
-          <KeyboardArrowDownIcon sx={{ color: 'var(--t-w)', ml: 1 }} />
+        
+          <Tooltip title="pattanachai">
+            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <KeyboardArrowDownIcon sx={{ color: 'var(--t-w)', ml: 1 }} />
+            </IconButton>
+          </Tooltip>
           
           <Menu
             sx={{ mt: '45px' }}

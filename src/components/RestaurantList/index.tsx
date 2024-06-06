@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, CardContent, Typography, CardMedia, Grid, TextField, MenuItem, Select, Box, InputAdornment } from '@mui/material';
+import { Card, CardContent, Typography, CardMedia, Grid, TextField, MenuItem, Select, Box, InputAdornment, Button } from '@mui/material';
 import { Restaurant } from '../../types/Restaurant';
 import SearchIcon from '@mui/icons-material/Search';
-import classes from './index.module.css'
+import classes from './index.module.css';
 
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
@@ -19,11 +19,31 @@ const categories = ['Restaurant', 'Bakery', 'Cafe'];
 const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants }) => {
   const [filter, setFilter] = useState('');
   const [category, setCategory] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 9;
 
   const filteredRestaurants = restaurants.filter((restaurant) =>
     restaurant.name.toLowerCase().includes(filter.toLowerCase()) &&
     (category === '' || restaurant.categories.includes(category.toLowerCase()))
   );
+
+  const totalPages = Math.ceil(filteredRestaurants.length / itemsPerPage);
+  const paginatedRestaurants = filteredRestaurants.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   return (
     <Box sx={{ padding: 3 }}>
@@ -100,11 +120,11 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants }) => {
               }}
             />
           </Grid>
-    </Grid>
+        </Grid>
       </Box>
 
       <Grid container spacing={3}>
-        {filteredRestaurants.map((restaurant) => (
+        {paginatedRestaurants.map((restaurant) => (
           <Grid item xs={12} sm={6} md={4} key={restaurant.id}>
             <Box sx={{ backgroundColor: 'white', padding: 2, borderRadius: 4 , boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)'}}>
               <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' , boxShadow: 'none'}}>
@@ -174,6 +194,26 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants }) => {
           </Grid>
         ))}
       </Grid>
+
+      <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 3 }}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handlePreviousPage}
+          disabled={currentPage === 1}
+          sx={{ marginRight: 2 }}
+        >
+          Previous
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </Button>
+      </Box>
     </Box>
   );
 };

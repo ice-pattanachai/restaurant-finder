@@ -13,15 +13,16 @@ const AppSidebar = () => {
     <Box className={` ${classes.sidebar} `}>
       <ListItem  className={classes.listItem}>
         <div className={`${classes.listItemContent}`}>
+         <a href="https://icsco.ai/" target="_blank">
           <Image
-              src="/image/ics.svg"
-              alt="Logo"
-              width={50}
-              height={50}
-              layout="fixed" 
-              className={classes.logo}
-            />
-
+            src="/image/ics.svg"
+            alt="Logo"
+            width={50}
+            height={50}
+            layout="fixed" 
+            className={classes.logo}
+          />
+        </a>
         </div>    
       </ListItem>
 
