@@ -1,12 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, CardContent, Typography, CardMedia, Grid, TextField, MenuItem, Select, Box, InputAdornment, Button } from '@mui/material';
+import { Card, Typography, CardMedia, Grid, TextField, MenuItem, Select, Box, Pagination } from '@mui/material';
 import { Restaurant } from '../../types/Restaurant';
-import SearchIcon from '@mui/icons-material/Search';
 import classes from './index.module.css';
 
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import CircleIcon from '@mui/icons-material/Circle';
 
@@ -33,16 +31,8 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants }) => {
     currentPage * itemsPerPage
   );
 
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
+  const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
+    setCurrentPage(page);
   };
 
   return (
@@ -68,7 +58,7 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants }) => {
                   borderColor: 'var(--t-blue2)',
                 },
                 '& .MuiOutlinedInput-input': {
-                  padding: '14px 20px', 
+                  padding: '14px 20px',
                 },
               }}
             >
@@ -108,7 +98,7 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants }) => {
               sx={{
                 '& .MuiOutlinedInput-root': {
                   '& fieldset': {
-                    borderColor: 'var(--t-blue1)', 
+                    borderColor: 'var(--t-blue1)',
                   },
                   '&:hover fieldset': {
                     borderColor: 'var(--t-blue1)',
@@ -126,20 +116,20 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants }) => {
       <Grid container spacing={3}>
         {paginatedRestaurants.map((restaurant) => (
           <Grid item xs={12} sm={6} md={4} key={restaurant.id}>
-            <Box sx={{ backgroundColor: 'white', padding: 2, borderRadius: 4 , boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)'}}>
-              <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' , boxShadow: 'none'}}>
+            <Box sx={{ backgroundColor: 'white', padding: 2, borderRadius: 4, boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}>
+              <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', boxShadow: 'none' }}>
                 <Box sx={{ paddingLeft: 1, paddingRight: 1 }}>
-                  <Box sx={{ display: 'flex', alignItems: 'center' , paddingBlockEnd :2}}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', paddingBlockEnd: 2 }}>
 
                     {/* image */}
                     <CardMedia
                       component="img"
-                      style={{ width: 80, height: 80, borderRadius: '10%', objectFit: 'cover', marginRight: 2 }} // ใช้ object-fit เพื่อไม่ให้บีบภาพ
+                      style={{ width: 80, height: 80, borderRadius: '10%', objectFit: 'cover', marginRight: 2 }}
                       image={restaurant.profile_image_url}
                       alt={restaurant.name}
                     />
 
-                    <Box sx={{ flex: 1 , paddingLeft: 1, }}>
+                    <Box sx={{ flex: 1, paddingLeft: 1 }}>
 
                       {/* text */}
                       <Typography gutterBottom variant="h5" component="div">
@@ -155,11 +145,11 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants }) => {
                             {restaurant.operation_time[0].time_open} - {restaurant.operation_time[0].time_close}
                           </Typography>
                         </Box>
-                        
+
                         {/* score /5 */}
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                          <CircleIcon sx={{  marginRight: 1 }} className={classes.circleIcon} />
-                          <Typography variant="body1" className={`${classes.circleIcon} , ${classes.custom_textfield_bold}`}>
+                          <CircleIcon sx={{ marginRight: 1 }} className={classes.circleIcon} />
+                          <Typography variant="body1" className={`${classes.circleIcon}, ${classes.custom_textfield_bold}`}>
                             {restaurant.rating}
                           </Typography>
                         </Box>
@@ -167,27 +157,27 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants }) => {
                       </Box>
                     </Box>
                   </Box>
-                    <Grid container >
-                      {restaurant.images.slice(0, 3).map((image, index) => (
-                        <Grid item key={index} xs={4}>
-                          <CardMedia
-                            component="img"
-                            height="130"
-                            image={image}
-                            style={{
-                              borderRadius: index === 0 
-                                ? '10px 0 0 10px' // มุมบนซ้ายและล่างซ้าย
-                                : index === 2 
-                                ? '0 10px 10px 0' // มุมบนขวาและล่างขวา
-                                : '0', // ภาพตรงกลางไม่มีขอบโค้ง
-                              objectFit: 'cover' // ป้องกันการบีบภาพ
-                            }}
-                            alt={`Restaurant image ${index}`}
-                          />
-                        </Grid>
-                      ))}
-                    </Grid>
-        
+                  <Grid container>
+                    {restaurant.images.slice(0, 3).map((image, index) => (
+                      <Grid item key={index} xs={4}>
+                        <CardMedia
+                          component="img"
+                          height="130"
+                          image={image}
+                          style={{
+                            borderRadius: index === 0
+                              ? '10px 0 0 10px'
+                              : index === 2
+                                ? '0 10px 10px 0'
+                                : '0',
+                            objectFit: 'cover'
+                          }}
+                          alt={`Restaurant image ${index}`}
+                        />
+                      </Grid>
+                    ))}
+                  </Grid>
+
                 </Box>
               </Card>
             </Box>
@@ -196,23 +186,28 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants }) => {
       </Grid>
 
       <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 3 }}>
-        <Button
-          variant="contained"
+        <Pagination
+          count={totalPages}
+          page={currentPage}
+          onChange={handlePageChange}
+          siblingCount={0}
+          boundaryCount={2}
+          variant="outlined"
           color="primary"
-          onClick={handlePreviousPage}
-          disabled={currentPage === 1}
-          sx={{ marginRight: 2 }}
-        >
-          Previous
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </Button>
+          sx={{
+            '& .MuiPaginationItem-root': {
+              borderColor: 'var(--t-blue1)',
+            },
+            '& .MuiPaginationItem-outlined:hover': {
+              borderColor: 'var(--t-blue1)',
+            },
+            '& .Mui-selected': {
+              borderColor: 'var(--t-blue2)',
+              backgroundColor: 'var(--t-blue2)',
+              color:  'var(--t-w)',
+            },
+          }}
+        />
       </Box>
     </Box>
   );

@@ -60,3 +60,31 @@ After installing Node.js, you need to install Yarn. Yarn is a package manager th
 ```bash
 npm install --global yarn
 ```
+
+## Project Dependencies
+
+This project uses several dependencies and devDependencies:
+
+### Dependencies
+
+- **@emotion/react**: Library for writing CSS styles with JavaScript.
+- **@emotion/styled**: Styled components for Emotion.
+- **@fontsource/kanit**: Self-hosted Google font "Kanit".
+- **@mui/icons-material**: Material icons for Material-UI.
+- **@mui/material**: Material-UI components.
+- **@mui/styles**: Legacy styling solution for Material-UI.
+- **next**: React framework for server-side rendering and static site generation.
+- **react**: JavaScript library for building user interfaces.
+- **react-dom**: Entry point of the DOM-related rendering paths.
+- **react-mui-sidebar**: Sidebar component for Material-UI.
+
+### DevDependencies
+
+- **@types/node**: TypeScript definitions for Node.js.
+- **@types/react**: TypeScript definitions for React.
+- **@types/react-dom**: TypeScript definitions for React DOM.
+- **eslint**: Linter for JavaScript and TypeScript.
+- **eslint-config-next**: ESLint configuration for Next.js.
+- **postcss**: Tool for transforming CSS with JavaScript.
+- **tailwindcss**: Utility-first CSS framework.
+- **typescript**: JavaScript with syntax for types.
