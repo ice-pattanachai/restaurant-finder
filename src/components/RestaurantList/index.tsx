@@ -28,59 +28,79 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants }) => {
   return (
     <Box sx={{ padding: 3 }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: 2 }}>
-        <Select
-          value={category}
-          onChange={(e) => setCategory(e.target.value as string)}
-          displayEmpty
-          variant="outlined"
-          sx={{ marginRight: 2 }}
-        >
-          <MenuItem value="">
-            <em>All</em>
-          </MenuItem>
-          {categories.map((cat) => (
-            <MenuItem key={cat} value={cat.toLowerCase()}>
-              {cat}
-            </MenuItem>
-          ))}
-        </Select>
+        <Grid container alignItems="center" className={classes.search_bar}>
+          <Grid item>
+            <Select
+              value={category}
+              onChange={(e) => setCategory(e.target.value as string)}
+              displayEmpty
+              variant="outlined"
+              sx={{
+                borderRadius: '50px',
+                width: '200px',
+                height: '50px',
+                background: '#fff',
+                borderColor: 'var(--t-blue1)',
+                '&:hover': {
+                  borderColor: 'var(--t-blue1)',
+                },
+                '&.Mui-focused': {
+                  borderColor: 'var(--t-blue2)',
+                },
+                '& .MuiOutlinedInput-input': {
+                  padding: '14px 20px', 
+                },
+              }}
+            >
+              <MenuItem value="">
+                <p>All</p>
+              </MenuItem>
 
-          <TextField
-            placeholder="Search name..."
-            variant="outlined"
-            fullWidth
-            onChange={(e) => setFilter(e.target.value)}
-            className={`${classes.search_bar}`}
-            
-          />
+              {categories.map((cat) => (
+                <MenuItem key={cat} value={cat.toLowerCase()}>
+                  {cat}
+                </MenuItem>
+              ))}
+            </Select>
 
-        {/* <TextField
-          placeholder="Search name..."
-          variant="outlined"
-          fullWidth
-          onChange={(e) => setFilter(e.target.value)}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon />
-              </InputAdornment>
-            )
-          }}
-          sx={{
-            '& .MuiOutlinedInput-root': {
-              borderRadius: '20px', // กำหนดให้มีมุมโค้ง
-              '& fieldset': {
-                borderColor: 'blue', // สีขอบกรอบ
-              },
-              '&:hover fieldset': {
-                borderColor: 'blue', // สีขอบกรอบเมื่อโฮเวอร์
-              },
-              '&.Mui-focused fieldset': {
-                borderColor: 'blue', // สีขอบกรอบเมื่อโฟกัส
-              },
-            },
-          }}
-        /> */}
+          </Grid>
+
+          <Grid item>
+            <span style={{ margin: '0 8px', color:'var(--t-blue1)'}}>|</span>
+          </Grid>
+
+          <Grid item>
+            <TextField
+              placeholder="Search name..."
+              variant="outlined"
+              fullWidth
+              onChange={(e) => setFilter(e.target.value)}
+              className={classes.search_bar}
+              InputProps={{
+                style: {
+                  borderRadius: '50px',
+                  width: '400px',
+                  height: '50px',
+                  background: '#fff',
+                  marginLeft: 'auto',
+                },
+              }}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: 'var(--t-blue1)', 
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'var(--t-blue1)',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: 'var(--t-blue2)',
+                  },
+                },
+              }}
+            />
+          </Grid>
+    </Grid>
       </Box>
 
       <Grid container spacing={3}>

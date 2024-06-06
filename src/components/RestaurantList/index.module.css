@@ -12,7 +12,6 @@
 
 .custom_icon {
     margin-right: -8px;
-    /* การกำหนดระยะห่างของ icon จากขอบขวาของ TextField */
 }
 
 .custom_textfield_bold {
@@ -20,19 +19,9 @@
 }
 
 .search_bar {
-    display: flex;
-    align-items: center;
-    margin: 20px;
-    border-radius: 50px;
-    width: 400px;
-    height: 50px;
+    display: end;
     overflow: hidden;
-    background-color: white;
-    /* กำหนดสีพื้นหลังให้เป็นสีขาว */
-    border: 2px solid #124b8a;
-    /* กำหนดสีขอบ */
-    /* box-shadow: 0 0 5px 0 blue; */
-    /* เพิ่มเงาสีเมื่อโฮเวอร์ */
+    justify-content: flex-end;
 }
 
 .search_bar .MuiTextField_root {
